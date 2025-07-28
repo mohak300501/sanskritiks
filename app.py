@@ -8,12 +8,12 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'a_default_secret_key')
+app.secret_key = os.environ.get('SECRET_KEY')
 
 # Google Sheets and Drive configuration
 scopes = [
     'https://www.googleapis.com/auth/spreadsheets.readonly', # Readonly scope for Sheets
-    # 'https://www.googleapis.com/auth/drive.readonly' # Readonly scope for Drive
+    'https://www.googleapis.com/auth/drive.readonly' # Readonly scope for Drive
 ]
 
 def get_google_credentials():
