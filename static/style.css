@@ -34,6 +34,7 @@ header {
 
 .logo img {
     display: inline;
+    margin-bottom: -16px;
 }
 
 .site-title h1 {
@@ -50,6 +51,8 @@ nav ul {
 }
 
 nav ul li {
+    background: none;
+    box-shadow: none;
     margin-left: 20px;
 }
 
@@ -78,7 +81,7 @@ nav a:hover {
 }
 
 .logout button {
-    background-color: #d9534f; /* Red color for logout */
+    background-color: #d9534f;
     color: white;
     padding: 8px 12px;
     border: none;
@@ -91,19 +94,19 @@ nav a:hover {
     background-color: #c9302c;
 }
 
+.logout form {
+    padding: 0;
+}
+
 .container {
     flex: 1;
-    max-width: 800px;
+    max-width: 50%;
     margin: 20px auto;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    /* Remove flex properties for centering content */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
 }
 
 h1, h2, h3 {
@@ -116,7 +119,7 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 50%;
+    max-width: 80%;
     margin: 20px auto;
     text-align: left;
 }
@@ -264,8 +267,6 @@ footer img {
     }
 
     nav ul li {
-        background: none;
-        box-shadow: none;
         margin: 10px 0;
     }
 
@@ -300,11 +301,11 @@ footer img {
 
     form {
         padding: 15px;
-        max-width: 95%; /* Adjusted for smaller screens */
+        max-width: 95%;
     }
 
-     form input[type="password"] {
-        width: 90%; /* Adjusted width for smaller screens */
+    form input[type="password"] {
+        width: 90%;
     }
 
     .data-table {
