@@ -159,11 +159,12 @@ a:hover {
     .data-table td {
         display: block;
         text-align: left;
-        padding: 8px 10px; /* Adjusted padding */
+        padding: 8px 10px;
         border: none;
         border-bottom: 1px solid #eee;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        word-break: break-all;
     }
 
     .logout-button {
