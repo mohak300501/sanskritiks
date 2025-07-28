@@ -18,16 +18,10 @@ Dashboard
     {% if sheet_data %}
         <h3>Last Row Data:</h3>
         <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Key</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
             <tbody>
                 {% for key, value in sheet_data.items() %}
                 <tr>
-                    <td>{{ key }}</td>
+                    <td><b>{{ key }}</b></td>
                     <td>{{ value }}</td>
                 </tr>
                 {% endfor %}
