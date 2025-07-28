@@ -23,7 +23,7 @@ Google Drive Structure
         <p>Could not load Google Drive structure.</p>
     {% endif %}
 
-    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+    <p><a href="{{ url_for('dashboard') }}"><button>Back to Dashboard</button></a></p>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}

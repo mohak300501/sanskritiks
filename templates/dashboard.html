@@ -13,7 +13,8 @@ Dashboard
     <h2>Dashboard</h2>
     <p>Welcome! You are logged in.</p>
 
-    <p><a href="{{ url_for('drive_structure') }}">View Google Drive Structure</a></p>
+    <p><a href="{{ url_for('drive_structure') }}"><button>View Google Drive Structure</button></a></p>
+    <p><a href="{{ url_for('zipf_plot') }}"><button>View Zipf's Law Plot</button></a></p>
 
     {% if sheet_data %}
         <h3>Last Row Data:</h3>
@@ -29,7 +30,7 @@ Dashboard
         </table>
     {% else %}
         <p>Could not load data from Google Sheet.</p>
-    {% endif %}
+    {% endif }
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
