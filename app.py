@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import os
 import json
 import gspread
@@ -91,6 +91,7 @@ def login():
     if request.method == 'POST':
         password = request.form['password']
         if password == os.environ.get('APP_PASSWORD'):
+            session['logged_in'] = True
             return redirect(url_for('dashboard'))
         else:
             flash('Invalid password')
@@ -99,6 +100,8 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     sheet_data = get_google_sheet_data()
     if sheet_data is None:
         flash('Error fetching data from Google Sheet.')
@@ -106,6 +109,8 @@ def dashboard():
 
 @app.route('/drive_structure')
 def drive_structure():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     drive_tree = {}
     try:
         credentials = get_google_credentials()
@@ -117,6 +122,12 @@ def drive_structure():
         flash('Error fetching Google Drive structure.')
 
     return render_template('drive_structure.html', drive_tree=drive_tree)
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.pop('logged_in', None)
+    flash('You have been logged out.')
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
