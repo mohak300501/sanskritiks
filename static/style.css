@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    background-color: #2874A6; /* A shade of blue */
+    background-color: #2874A6;
     color: white;
     padding: 10px 0;
     width: 100%;
@@ -33,7 +33,7 @@ header {
 }
 
 .logo img {
-    display: block;
+    display: inline;
 }
 
 .site-title h1 {
@@ -73,6 +73,10 @@ nav a:hover {
     display: none;
 }
 
+.logout {
+    padding: 0;
+}
+
 .logout button {
     background-color: #d9534f; /* Red color for logout */
     color: white;
@@ -96,7 +100,8 @@ nav a:hover {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    /* display: flex; Remove flex properties for centering content */
+    /* Remove flex properties for centering content */
+    /* display: flex; */
     /* flex-direction: column; */
     /* justify-content: center; */
 }
@@ -111,7 +116,7 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px; /* Increased width */
+    max-width: 50%;
     margin: 20px auto;
     text-align: left;
 }
@@ -123,7 +128,7 @@ form label {
 }
 
 form input[type="password"] {
-    width: 95%; /* Adjusted width */
+    width: 95%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
@@ -216,7 +221,7 @@ a:hover {
 }
 
 footer {
-    background-color: #2874A6; /* Matching header color */
+    background-color: #2874A6;
     color: white;
     padding: 10px 0;
     width: 100%;
@@ -259,6 +264,8 @@ footer img {
     }
 
     nav ul li {
+        background: none;
+        box-shadow: none;
         margin: 10px 0;
     }
 
@@ -278,6 +285,10 @@ footer img {
 
     .menu-toggle:checked + .hamburger + .nav-links {
         display: flex;
+    }
+
+    form {
+        max-width: 80%;
     }
 }
 
