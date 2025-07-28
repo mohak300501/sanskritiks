@@ -34,11 +34,14 @@ def get_google_sheet_data():
         if not credentials:
             return None
         client = gspread.authorize(credentials)
-        sheet_name = os.environ.get('SHEET_NAME', 'Your Google Sheet Name')
-        sheet = client.open(sheet_name).sheet1
+        # Use open_by_key instead of open
+        sheet_id = os.environ.get('SHEET_ID') # Set SHEET_ID env var
+        if not sheet_id:
+             raise ValueError("SHEET_ID environment variable not set")
+        sheet = client.open_by_key(sheet_id).sheet1 # Assuming data is in the first sheet
         data = sheet.get_all_records()
         if data:
-            return data[-1]
+            return data[-1] # Get the last row
         else:
             return None
     except Exception as e:

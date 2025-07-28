@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "index.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="logout-button">
+        <form action="{{ url_for('logout') }}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
     <h2>Dashboard</h2>
     <p>Welcome! You are logged in.</p>
 
@@ -30,5 +35,4 @@
             </ul>
         {% endif %}
     {% endwith %}
-</body>
-</html>
+{% endblock %}

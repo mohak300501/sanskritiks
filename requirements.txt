@@ -1,4 +1,9 @@
 Flask
-gunicorn
 gspread
 google-api-python-client
+gunicorn
+# Environment variables needed:
+# APP_PASSWORD
+# GOOGLE_CREDENTIALS
+# SHEET_NAME (if using client.open())
+# SHEET_ID (if using client.open_by_key())

@@ -4,6 +4,16 @@ body {
     margin: 20px;
     background-color: #f4f4f4;
     color: #333;
+    text-align: center; /* Center content */
+}
+
+.container {
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto; /* Center the container */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2, h3 {
@@ -16,7 +26,7 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    margin: 20px auto;
+    margin: 20px auto; /* Center forms */
 }
 
 label {
@@ -86,4 +96,10 @@ a:hover {
 .flash-messages .error {
     background-color: #d9534f;
     color: white;
+}
+
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
