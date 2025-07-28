@@ -20,24 +20,27 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if session.get('logged_in'):
+        return redirect(url_for('sheet_data'))
     if request.method == 'POST':
         password = request.form['password']
         if password == os.environ.get('APP_PASSWORD'):
             session['logged_in'] = True
-            return redirect(url_for('dashboard'))
+            flash('Welcome! You are logged in.')
+            return redirect(url_for('sheet_data'))
         else:
             flash('Invalid password')
             return redirect(url_for('login'))
     return render_template('login.html')
 
-@app.route('/dashboard')
-def dashboard():
+@app.route('/sheet_data')
+def sheet_data():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     sheet_data = get_google_sheet_data()
     if sheet_data is None:
         flash('Error fetching data from Google Sheet.')
-    return render_template('dashboard.html', sheet_data=sheet_data)
+    return render_template('sheet_data.html', sheet_data=sheet_data)
 
 @app.route('/drive_structure')
 def drive_structure():

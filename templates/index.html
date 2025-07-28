@@ -8,7 +8,32 @@
 </head>
 <body>
     <header>
-        <h1>Sanskrit Data Stats</h1>
+        <div class="header-content">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='favicon.svg') }}" alt="Logo" width="40" height="40">
+            </div>
+            <div class="site-title">
+                 <h1>Sanskrit Data Stats</h1>
+            </div>
+            <nav>
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="hamburger">
+                    &#9776;
+                </label>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('sheet_data') }}">Sheet Data</a></li>
+                    <li><a href="{{ url_for('drive_structure') }}">Drive Structure</a></li>
+                    <li><a href="{{ url_for('zipf_plot') }}">Zipf's Plot</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                {% if session.get('logged_in') %}
+                <form action="{{ url_for('logout') }}" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
     </header>
     <div class="container">
         {% block content %}{% endblock %}

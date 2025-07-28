@@ -1,20 +1,11 @@
 {% extends "index.html" %}
 
 {% block title %}
-Dashboard
+Sheet Data
 {% endblock %}
 
 {% block content %}
-    <div class="logout-button">
-        <form action="{{ url_for('logout') }}" method="post">
-            <button type="submit">Logout</button>
-        </form>
-    </div>
-    <h2>Dashboard</h2>
-    <p>Welcome! You are logged in.</p>
-
-    <p><a href="{{ url_for('drive_structure') }}"><button>View Google Drive Structure</button></a></p>
-    <p><a href="{{ url_for('zipf_plot') }}"><button>View Zipf's Law Plot</button></a></p>
+    <h2>Sheet Data</h2>
 
     {% if sheet_data %}
         <h3>Last Row Data:</h3>

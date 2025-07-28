@@ -5,7 +5,7 @@ from collections import Counter
 
 def generate_zipf_plot():
     # --- CONFIGURATION ---
-    with open('/content/drive/Shareddrives/Sanskrit-Data/unique_token_dictionary.json', 'r', encoding='utf-8') as f:
+    with open('https://drive.google.com/file/d/1Le07EECi597hZn4E6UDluuX6W84ulce2/view?usp=drive_link', 'r', encoding='utf-8') as f:
         token_frequency = json.load(f)
 
     # --- SORT BY FREQUENCY DESC ---
