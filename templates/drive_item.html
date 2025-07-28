@@ -1,10 +1,9 @@
 <li>
-    {{ item.name }}
-    {% if item.children %}
-        <ul>
-        {% for child_id, child_info in item.children.items() %}
-            {% include 'drive_item.html' item=child_info %}
-        {% endfor %}
-        </ul>
+    {% if item_info.type == 'folder' %}
+        <a href="{{ url_for('drive_structure', folder_id=item_id) }}">
+            <strong>{{ item_info.name }}</strong>
+        </a>
+    {% else %}
+        {{ item_info.name }}
     {% endif %}
 </li>
