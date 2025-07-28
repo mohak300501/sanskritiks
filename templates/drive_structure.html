@@ -5,6 +5,20 @@
 </head>
 <body>
     <h2>Google Drive Structure</h2>
-    <!-- Drive structure will be displayed here -->
+
+    {% if drive_tree %}
+        <h3>Folders:</h3>
+        <ul>
+        {% for folder_id, folder_info in drive_tree.items() %}
+            <li>{{ folder_info.name }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Could not load Google Drive structure.</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+
+    <!-- Error toast messages and chart visualization will be added here -->
 </body>
 </html>
