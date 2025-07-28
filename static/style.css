@@ -141,7 +141,6 @@ form input[type="password"] {
 form button {
     display: block;
     width: 100%;
-    padding: 10px;
 }
 
 button {
@@ -228,8 +227,7 @@ footer {
     color: white;
     padding: 10px 0;
     width: 100%;
-    bottom: 0;
-    left: 0;
+    margin-top: auto;
     z-index: 1000;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
