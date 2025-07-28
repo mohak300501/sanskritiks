@@ -6,6 +6,20 @@
 <body>
     <h2>Dashboard</h2>
     <p>Welcome! You are logged in.</p>
-    <!-- Content will be added here later -->
+
+    <p><a href="{{ url_for('drive_structure') }}">View Google Drive Structure</a></p>
+
+    {% if sheet_data %}
+        <h3>Last Row Data:</h3>
+        <ul>
+        {% for key, value in sheet_data.items() %}
+            <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Could not load data from Google Sheet.</p>
+    {% endif ход
+
+    <!-- Error toast messages will be added here -->
 </body>
 </html>
