@@ -108,12 +108,14 @@ a:hover {
     margin: 20px auto;
     border-collapse: collapse;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 .data-table td {
     padding: 12px 15px;
     border: 1px solid #ddd;
     text-align: left;
+    box-sizing: border-box;
 }
 
 .data-table tbody tr:nth-child(even) {
