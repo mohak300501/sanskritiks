@@ -4,12 +4,12 @@ body {
     margin: 20px;
     background-color: #f4f4f4;
     color: #333;
-    text-align: center; /* Center content */
+    text-align: center;
 }
 
 .container {
-    max-width: 800px; /* Adjust as needed */
-    margin: 0 auto; /* Center the container */
+    max-width: 800px;
+    margin: 0 auto;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -26,7 +26,7 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    margin: 20px auto; /* Center forms */
+    margin: 20px auto;
 }
 
 label {
@@ -79,7 +79,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Toast messages (basic styling) */
 .flash-messages {
     list-style: none;
     padding: 0;
@@ -104,7 +103,6 @@ a:hover {
     right: 20px;
 }
 
-/* Table styling */
 .data-table {
     width: 80%;
     margin: 20px auto;
@@ -126,7 +124,6 @@ a:hover {
     background-color: #e9e9e9;
 }
 
-/* Responsive adjustments */
 @media (max-width: 600px) {
     body {
         margin: 10px;
@@ -140,22 +137,30 @@ a:hover {
         padding: 15px;
     }
 
-    .data-table,
-    .data-table tbody,
-    .data-table tr,
-    .data-table td {
-        display: block;
+    .data-table {
         width: 100%;
     }
 
-    .data-table tr {
+    .data-table thead {
+        display: none;
+    }
+
+    .data-table tbody tr {
         margin-bottom: 15px;
+        display: block;
+        border: 1px solid #ddd;
     }
 
     .data-table td {
-        text-align: right;
-        padding-left: 50%;
+        display: block;
+        text-align: left;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #eee;
         position: relative;
+        padding-left: 50%;
+        word-wrap: break-word; /* Add word-wrap */
+        overflow-wrap: break-word; /* Add overflow-wrap */
     }
 
     .data-table td::before {
