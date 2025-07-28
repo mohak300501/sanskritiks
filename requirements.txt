@@ -1,4 +1,6 @@
 Flask
+numpy
+matplotlib
 gspread
 google-api-python-client
 gunicorn
