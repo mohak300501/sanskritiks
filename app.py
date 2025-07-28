@@ -5,14 +5,15 @@ import json
 import gspread
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'a_default_secret_key')
 
 # Google Sheets and Drive configuration
 scopes = [
-    'https://www.googleapis.com/auth/spreadsheets',
-    'https://www.googleapis.com/auth/drive'
+    'https://www.googleapis.com/auth/spreadsheets.readonly', # Readonly scope for Sheets
+    'https://www.googleapis.com/auth/drive.readonly' # Readonly scope for Drive
 ]
 
 def get_google_credentials():
@@ -44,39 +45,38 @@ def get_google_sheet_data():
         print(f"Error fetching Google Sheet data: {e}")
         return None
 
-def get_drive_folders(parent_id=None):
-    try:
-        credentials = get_google_credentials()
-        if not credentials:
-            return None
+def get_drive_items(service, parent_id=None):
+    items = []
+    page_token = None
+    while True:
+        try:
+            query = "'" + parent_id + "' in parents and trashed = false" if parent_id else "'sharedWithMe' in owners and trashed = false"
+            response = service.files().list(
+                q=query,
+                spaces='drive',
+                fields='nextPageToken, files(id, name, mimeType)',
+                pageToken=page_token
+            ).execute()
+            items.extend(response.get('files', []))
+            page_token = response.get('nextPageToken', None)
+            if page_token is None:
+                break
+        except HttpError as error:
+            print(f'An error occurred: {error}')
+            break
+    return items
 
-        drive_service = build('drive', 'v3', credentials=credentials)
-
-        query = "mimeType = 'application/vnd.google-apps.folder' and trashed = false"
-        if parent_id:
-            query += f" and '{parent_id}' in parents"
-        else:
-            # List root folders in shared drives the service account has access to
-            query += " and 'sharedWithMe' in owners"
-
-        results = drive_service.files().list(
-            q=query,
-            spaces='drive',
-            fields='files(id, name, parents)').execute()
-        items = results.get('files', [])
-        return items
-    except Exception as e:
-        print(f"Error fetching Google Drive folders: {e}")
-        return None
-
-def build_drive_tree(folders):
-    # This is a simplified approach. For a true hierarchical view,
-    # you'd need to recursively fetch subfolders for each folder.
-    # This function will just list top-level folders for now.
+def build_drive_tree(service, parent_id=None):
     tree = {}
-    if folders:
-        for folder in folders:
-            tree[folder['id']] = {'name': folder['name'], 'children': []}
+    items = get_drive_items(service, parent_id)
+    for item in items:
+        item_id = item['id']
+        item_name = item['name']
+        mime_type = item['mimeType']
+        if mime_type == 'application/vnd.google-apps.folder':
+            tree[item_id] = {'name': item_name, 'children': build_drive_tree(service, item_id)}
+        else:
+            tree[item_id] = {'name': item_name, 'is_file': True}
     return tree
 
 @app.route('/')
@@ -103,10 +103,16 @@ def dashboard():
 
 @app.route('/drive_structure')
 def drive_structure():
-    folders = get_drive_folders()
-    drive_tree = build_drive_tree(folders)
-    if folders is None:
-         flash('Error fetching Google Drive structure.')
+    drive_tree = {}
+    try:
+        credentials = get_google_credentials()
+        if credentials:
+            drive_service = build('drive', 'v3', credentials=credentials)
+            drive_tree = build_drive_tree(drive_service)
+    except Exception as e:
+        print(f"Error building Drive tree: {e}")
+        flash('Error fetching Google Drive structure.')
+
     return render_template('drive_structure.html', drive_tree=drive_tree)
 
 if __name__ == '__main__':

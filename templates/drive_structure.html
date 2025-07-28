@@ -2,15 +2,16 @@
 <html>
 <head>
     <title>Google Drive Structure</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h2>Google Drive Structure</h2>
 
     {% if drive_tree %}
-        <h3>Folders:</h3>
+        <h3>Folders and Files:</h3>
         <ul>
-        {% for folder_id, folder_info in drive_tree.items() %}
-            <li>{{ folder_info.name }}</li>
+        {% for item_id, item_info in drive_tree.items() %}
+            {% include 'drive_item.html' with item=item_info %}
         {% endfor %}
         </ul>
     {% else %}
@@ -19,6 +20,14 @@
 
     <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
 
-    <!-- Error toast messages and chart visualization will be added here -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flash-messages">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 </body>
 </html>
