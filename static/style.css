@@ -32,13 +32,11 @@ header {
     padding: 0 20px;
 }
 
-.logo img {
-    display: inline;
-    margin-bottom: -16px;
+.logotitle {
+    display: flex;;
 }
 
 .site-title h1 {
-    margin: 0;
     color: white;
     font-size: 24px;
 }
@@ -76,14 +74,9 @@ nav a:hover {
     display: none;
 }
 
-.logout {
-    padding: 0;
-}
-
 .logout button {
     background-color: #d9534f;
     color: white;
-    padding: 8px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -94,13 +87,8 @@ nav a:hover {
     background-color: #c9302c;
 }
 
-.logout form {
-    padding: 0;
-}
-
 .container {
     flex: 1;
-    max-width: 50%;
     margin: 20px auto;
     background: #fff;
     padding: 20px;
@@ -112,16 +100,6 @@ nav a:hover {
 h1, h2, h3 {
     color: #555;
     text-align: center;
-}
-
-form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 80%;
-    margin: 20px auto;
-    text-align: left;
 }
 
 form label {
@@ -246,11 +224,6 @@ footer img {
     .header-content {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .site-title h1 {
-        text-align: left;
-        margin-top: 10px;
     }
 
     nav ul {
