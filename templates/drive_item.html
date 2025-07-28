@@ -3,7 +3,7 @@
     {% if item.children %}
         <ul>
         {% for child_id, child_info in item.children.items() %}
-            {% include 'drive_item.html' with item=child_info %}
+            {% include 'drive_item.html' item=child_info %}
         {% endfor %}
         </ul>
     {% endif %}

@@ -103,3 +103,31 @@ a:hover {
     top: 20px;
     right: 20px;
 }
+
+/* Table styling */
+.data-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tbody tr:hover {
+    background-color: #e9e9e9;
+}
