@@ -16,7 +16,7 @@ Google Drive Structure
         <h3>Folders and Files:</h3>
         <ul>
         {% for item_id, item_info in drive_tree.items() %}
-            {% include 'drive_item.html' with item=item_info %}
+            {% include 'drive_item.html' item=item_info %}
         {% endfor %}
         </ul>
     {% else %}
