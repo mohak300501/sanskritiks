@@ -1,24 +1,51 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: sans-serif;
     line-height: 1.6;
-    margin: 20px;
     background-color: #f4f4f4;
     color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #555;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    color: white;
     text-align: center;
 }
 
 .container {
+    flex: 1;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
 }
 
 h1, h2, h3 {
     color: #555;
+    text-align: center;
 }
 
 form {
@@ -28,20 +55,27 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     margin: 20px auto;
+    text-align: left;
 }
 
-label {
+form label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
 }
 
-input[type="password"] {
+form input[type="password"] {
     width: 85%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
 }
 
 button {
@@ -69,6 +103,7 @@ li {
     margin-bottom: 5px;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+    text-align: left;
 }
 
 a {
@@ -85,6 +120,7 @@ a:hover {
     padding: 0;
     margin: 20px auto;
     max-width: 400px;
+    text-align: center;
 }
 
 .flash-messages li {
@@ -127,14 +163,31 @@ a:hover {
     background-color: #e9e9e9;
 }
 
-@media (max-width: 600px) {
-    body {
-        margin: 10px;
-    }
+footer {
+    background-color: #555;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
+footer a {
+    color: lightgray;
+    margin: 0 10px;
+}
+
+footer img {
+    vertical-align: middle;
+}
+
+@media (max-width: 600px) {
     .container {
         padding: 10px;
-        box-sizing: border-box;
+        margin: 10px auto;
     }
 
     form {
@@ -171,5 +224,15 @@ a:hover {
         position: static;
         text-align: center;
         margin-bottom: 10px;
+    }
+
+    header,
+    footer {
+        padding: 10px;
+    }
+
+    footer a {
+        display: inline-block;
+        margin: 5px;
     }
 }
