@@ -5,15 +5,7 @@ Zipf's Law Plot
 {% endblock %}
 
 {% block content %}
-    <div class="logout-button">
-        <form action="{{ url_for('logout') }}" method="post">
-            <button type="submit">Logout</button>
-        </form>
-    </div>
     <h2>Zipf's Law Plot</h2>
 
     <img src="{{ url_for('static', filename='zipf_plot.png') }}" alt="Zipf's Law Plot">
-
-    <p><a href="{{ url_for('sheet_data') }}"><button>Back to Sheet Data</button></a></p>
-
 {% endblock %}

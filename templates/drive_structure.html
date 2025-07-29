@@ -5,11 +5,6 @@ Google Drive Structure
 {% endblock %}
 
 {% block content %}
-    <div class="logout-button">
-        <form action="{{ url_for('logout') }}" method="post">
-            <button type="submit">Logout</button>
-        </form>
-    </div>
     <h2>Google Drive Structure</h2>
 
     {% if drive_tree %}
@@ -22,8 +17,6 @@ Google Drive Structure
     {% else %}
         <p>Could not load Google Drive structure.</p>
     {% endif %}
-
-    <p><a href="{{ url_for('sheet_data') }}"><button>Back to Sheet Data</button></a></p>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
