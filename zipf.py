@@ -1,9 +1,9 @@
 import os, re, json, io
 import numpy as np
 import matplotlib.pyplot as plt
-from collections import Counter
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
+from google_auth import get_google_credentials
 
 def download_drive_file(file_id, credentials):
     try:
