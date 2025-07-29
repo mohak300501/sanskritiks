@@ -1,12 +1,35 @@
-import os, re, json
+import os, re, json, io
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaIoBaseDownload
+
+def download_drive_file(file_id, credentials):
+    try:
+        service = build('drive', 'v3', credentials=credentials)
+        request = service.files().get_media(fileId=file_id)
+        fh = io.BytesIO()
+        downloader = MediaIoBaseDownload(fh, request)
+        done = False
+        while done is False:
+            status, done = downloader.next_chunk()
+        fh.seek(0)
+        return fh.read().decode('utf-8')
+    except Exception as e:
+        print(f"Error downloading file: {e}")
+        return None
 
 def generate_zipf_plot():
     # --- CONFIGURATION ---
-    with open('https://drive.google.com/file/d/1Le07EECi597hZn4E6UDluuX6W84ulce2/view?usp=drive_link', 'r', encoding='utf-8') as f:
-        token_frequency = json.load(f)
+    file_id = os.environ.get('UNIQUE_JSON')
+    scopes = ['https://www.googleapis.com/auth/drive.readonly']
+    credentials = get_google_credentials(scopes)
+    file_content = download_drive_file(file_id, credentials)
+    if file_content is None:
+        print("Failed to get file content")
+        return
+    token_frequency = json.loads(file_content)
 
     # --- SORT BY FREQUENCY DESC ---
     frequencies = sorted(token_frequency.values(), reverse=True)
