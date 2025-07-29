@@ -46,4 +46,4 @@ jobs:
           git config user.email "actions@github.com"
           git add static/zipf_plot.png
           git commit -m "Update Zipf plot (auto)" || echo "No changes"
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/mohak300501/sanskritiks.git HEAD:main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/mohak300501/sanskritiks.git HEAD:main
