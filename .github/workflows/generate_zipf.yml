@@ -25,7 +25,7 @@ jobs:
       - name: Run plot generation script
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-        run: python generate_zipf_plot.py
+        run: python generate_zipf.py
 
       - name: Commit and push new plot
         run: |

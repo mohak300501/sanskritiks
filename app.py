@@ -3,7 +3,6 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from google_sheets import get_google_sheet_data
 from google_drive import build_drive_tree
-from zipf import generate_zipf_plot
 from google_auth import get_google_credentials
 from datetime import datetime
 
@@ -69,7 +68,6 @@ def drive_structure():
 def zipf_plot():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    generate_zipf_plot()
     return render_template('zipf_plot.html')
 
 @app.route('/about')
