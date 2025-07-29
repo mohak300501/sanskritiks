@@ -25,6 +25,7 @@ jobs:
       - name: Run plot generation script
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+          UNIQUE_JSON_ID: ${{ secrets.UNIQUE_JSON_ID }}
         run: python generate_zipf.py
 
       - name: Commit and push new plot
@@ -33,4 +34,4 @@ jobs:
           git config user.email "actions@github.com"
           git add static/zipf_plot.png
           git commit -m "Update Zipf plot (auto)" || echo "No changes"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/mohak300501/sanskritiks.git HEAD:main

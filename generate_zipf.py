@@ -22,7 +22,7 @@ def download_drive_file(file_id, credentials):
 
 def generate_zipf_plot():
     # --- CONFIGURATION ---
-    file_id = os.environ.get('UNIQUE_JSON')
+    file_id = os.environ.get('UNIQUE_JSON_ID')
     scopes = ['https://www.googleapis.com/auth/drive.readonly']
     credentials = get_google_credentials(scopes)
     file_content = download_drive_file(file_id, credentials)
@@ -50,3 +50,6 @@ def generate_zipf_plot():
     plt.legend()
     plt.savefig('static/zipf_plot.png')
     plt.close()
+
+if __name__ == "__main__":
+    generate_zipf_plot()
