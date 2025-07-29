@@ -50,3 +50,6 @@ def generate_zipf_plot():
     plt.legend()
     plt.savefig('static/zipf_plot.png')
     plt.close()
+
+if __name__ == "__main__":
+    generate_zipf_plot()
